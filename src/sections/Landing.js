@@ -8,7 +8,7 @@ import Section from '../components/Section';
 import SocialLink from '../components/SocialLink';
 import MouseIcon from '../components/MouseIcon';
 import Triangle from '../components/Triangle';
-
+import { splash } from '../../media/splash.jpg';
 const SplashImage = styled(Image)`
   position: absolute;
   top: 0px;
@@ -19,59 +19,39 @@ const SplashImage = styled(Image)`
 `;
 
 const Background = () => (
-  <StaticQuery
-    query={graphql`
-      query SiteImageQuery {
-        contentfulAbout {
-          splashLogoLight {
-            title
-            image: resize(width: 450, quality: 100) {
-              src
-            }
-          }
-        }
-      }
-    `}
-    render={data => {
-      const { splashLogoLight } = data.contentfulAbout;
+  <div>
+    <SplashImage
+      src={splash}
+      width={['100vw', '100vw']}
+      height={['100vh', '100vh']}
+    />
+    <Triangle
+      color="secondary"
+      height={['35vh', '80vh']}
+      width={['95vw', '60vw']}
+      style={{ position: 'absolute', top: 0, left: 0 }}
+    />
+    <Triangle
+      color="backgroundDark"
+      height={['38vh', '80vh']}
+      width={['50vw', '35vw']}
+    />
 
-      return (
-        <Fragment>
-          <SplashImage
-            src={splashLogoLight.image.src}
-            width={['100vw', '100vw']}
-            height={['100vh', '100vh']}
-          />
-          <Triangle
-            color="secondary"
-            height={['35vh', '80vh']}
-            width={['95vw', '60vw']}
-            style={{ position: 'absolute', top: 0, left: 0 }}
-          />
-          <Triangle
-            color="backgroundDark"
-            height={['38vh', '80vh']}
-            width={['50vw', '35vw']}
-          />
+    <Triangle
+      color="primaryDark"
+      height={['25vh', '35vh']}
+      width={['75vw', '60vw']}
+      invertX
+    />
 
-          <Triangle
-            color="primaryDark"
-            height={['25vh', '35vh']}
-            width={['75vw', '60vw']}
-            invertX
-          />
-
-          <Triangle
-            color="backgroundDark"
-            height={['20vh', '20vh']}
-            width={['100vw', '100vw']}
-            invertX
-            invertY
-          />
-        </Fragment>
-      );
-    }}
-  />
+    <Triangle
+      color="backgroundDark"
+      height={['20vh', '20vh']}
+      width={['100vw', '100vw']}
+      invertX
+      invertY
+    />
+  </div>
 );
 
 const centerHorizontally = { marginRight: 'auto', marginLeft: 'auto' };
