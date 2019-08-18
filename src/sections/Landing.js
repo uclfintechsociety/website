@@ -8,53 +8,70 @@ import Section from '../components/Section';
 import SocialLink from '../components/SocialLink';
 import MouseIcon from '../components/MouseIcon';
 import Triangle from '../components/Triangle';
-import Splash from '../../media/splash.png';
 
 const SplashImage = styled(Image)`
   position: absolute;
   top: 0px;
   z-index: -10;
   object-fit: cover;
-  filter: blur(2px);
-  -webkit-filter: blur(2px);
+  /*filter: blur(2px);
+  -webkit-filter: blur(2px);*/
 `;
 
 const Background = () => (
-  <div>
-    <div>
-      <SplashImage
-        src={Splash}
-        width={['100vw', '100vw']}
-        height={['100vh', '100vh']}
-      />
-      <Triangle
-        color="backgroundDark"
-        height={['35vh', '80vh']}
-        width={['95vw', '60vw']}
-        style={{ position: 'absolute', top: 0, left: 0 }}
-      />
-      <Triangle
-        color="secondary"
-        height={['38vh', '80vh']}
-        width={['50vw', '35vw']}
-      />
+  <StaticQuery
+    query={graphql`
+      query SiteImageQuery {
+        contentfulAbout {
+          splashLogoLight {
+            title
+            image: resize(width: 450, quality: 100) {
+              src
+            }
+          }
+        }
+      }
+    `}
+    render={data => {
+      const { splashLogoLight } = data.contentfulAbout;
 
-      <Triangle
-        color="primaryDark"
-        height={['25vh', '35vh']}
-        width={['75vw', '60vw']}
-        invertX
-      />
+      return (
+        <Fragment>
+          <SplashImage
+            src={splashLogoLight.image.src}
+            width={['100vw', '100vw']}
+            height={['100vh', '100vh']}
+          />
+          <Triangle
+            color="secondary"
+            height={['35vh', '80vh']}
+            width={['95vw', '60vw']}
+            style={{ position: 'absolute', top: 0, left: 0 }}
+          />
+          <Triangle
+            color="backgroundDark"
+            height={['38vh', '80vh']}
+            width={['50vw', '35vw']}
+          />
 
-      <Triangle
-        color="backgroundDark"
-        height={['20vh', '20vh']}
-        width={['100vw', '100vw']}
-        invertX
-        invertY
-      />
-    </div>
-  </div>
+          <Triangle
+            color="primaryDark"
+            height={['25vh', '35vh']}
+            width={['75vw', '60vw']}
+            invertX
+          />
+
+          <Triangle
+            color="backgroundDark"
+            height={['20vh', '20vh']}
+            width={['100vw', '100vw']}
+            invertX
+            invertY
+          />
+        </Fragment>
+      );
+    }}
+  />
 );
 
 const centerHorizontally = { marginRight: 'auto', marginLeft: 'auto' };
@@ -89,13 +106,7 @@ const LandingPage = () => (
         }
       `}
       render={data => {
-        const {
-          name,
-          socialLinks,
-          roles,
-          profile,
-          splashLogoLight,
-        } = data.contentfulAbout;
+        const { name, socialLinks, roles, profile } = data.contentfulAbout;
 
         return (
           <Fragment>
@@ -112,7 +123,7 @@ const LandingPage = () => (
 
             <Heading
               as="h1"
-              color="white"
+              color="#fff"
               fontSize={[4, 5, 6]}
               mb={[3, 5]}
               textAlign="center"
@@ -136,7 +147,7 @@ const LandingPage = () => (
                 </Box>
               ))}
             </Flex>
-            <SectionLink section="about">
+            <SectionLink section="about" color="white">
               {({ onClick }) => <MouseIcon onClick={onClick} />}
             </SectionLink>
           </Fragment>

@@ -9,23 +9,25 @@ import Triangle from '../components/Triangle';
 const Background = () => (
   <div>
     <Triangle
-      color="secondaryLight"
-      height={['50vh', '20vh']}
-      width={['50vw', '50vw']}
+      color="backgroundDark"
+      height={['15vh', '10vh']}
+      width={['100vw', '100vw']}
+      invertX
+    />
+
+    <Triangle
+      color="secondary"
+      height={['50vh', '40vh']}
+      width={['70vw', '40vw']}
       invertY
     />
 
     <Triangle
       color="primaryDark"
-      height={['20vh', '40vh']}
-      width={['75vw', '70vw']}
-      invertX
-    />
-
-    <Triangle
-      color="backgroundDark"
-      height={['25vh', '20vh']}
+      height={['40vh', '15vh']}
       width={['100vw', '100vw']}
+      invertX
+      invertY
     />
   </div>
 );

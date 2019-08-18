@@ -8,7 +8,7 @@ import FontAwesomeIcon from 'react-fontawesome';
 const IconLink = styled(Link)`
   transition: color 0.5s;
   color: ${props =>
-    props.theme.colors[props.color] || props.theme.colors.primary};
+    props.theme.colors[props.color] || props.theme.colors.secondary};
   text-decoration: none;
 
   &:hover {
