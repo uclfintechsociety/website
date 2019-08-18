@@ -8,7 +8,8 @@ import Section from '../components/Section';
 import SocialLink from '../components/SocialLink';
 import MouseIcon from '../components/MouseIcon';
 import Triangle from '../components/Triangle';
-import { splash } from '../../media/splash.jpg';
+import splash from '../../media/splash_pic.png';
+
 const SplashImage = styled(Image)`
   position: absolute;
   top: 0px;
@@ -22,6 +23,7 @@ const Background = () => (
   <div>
     <SplashImage
       src={splash}
+      alt="splash"
       width={['100vw', '100vw']}
       height={['100vh', '100vh']}
     />
